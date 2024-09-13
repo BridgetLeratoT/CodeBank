@@ -44,3 +44,35 @@ def dashboard():
 		elif option_Selection == 4:
 			break
 dashboard()
+
+#user database
+users = {"lee":{"password":"1234", "balance":2000}}
+
+def register():
+    return
+
+def displayBalance():
+    return print("balance is...")
+
+def login():
+    username = input("Enter your username ")
+    if username in users:
+        password = input("Enter your password")
+        if(users[username]["password"] == password):
+            displayBalance()
+        else:
+            print("Error, incorrect password")
+    else:
+        print("THe user name does not exist, register for a new account")
+        
+
+def accessAccount():
+    accessAcc = input("Would you like to 'login' or 'register'? ")
+    if(accessAcc.lower() == "login"):
+        login()
+    elif(accessAcc.lower() == "register"):
+        register()
+    else:
+        return print("invalid input")
+
+accessAccount()
