@@ -22,50 +22,54 @@ After the user has entered valid credentials
 4. After the sucessful login we run our while loop until the user chooses to logout 
 '''
 database: dict = {
-	'Juniorzwane' : [5000]
+	'Juniorzwane' : ['1234' ,5000]	
 }
-def dashboard():
-	username = input("Please enter your username: ")
+
+
+def register() -> None:
+    '''
+    This fucntion is used to register the user 
+    >>> username 
+    '''
+    return 
+
+
+
+def dashboard(username) -> list:
+	#username = input("Please enter your username: ")
 	# Username is not yet defined because we have to recieve it from login()
 	print(f'Welcome back to your CodeBank profile {username}\n\n')
 	print('Please make a selection below:\n1.View Balance\n2.Withdraw\n3.Deposit\n4.LogOut')
 	option_Selection = int(input('Choose an option above e.g 1 : ')) #input always returns a string so convert to integer using the int function
 	while True:
 		if option_Selection == 1:
-			print(f'Your balance is : {database.get(username)[0]}\n') # on the returned list the 0 index value is balance
+			print(f'Your balance is : {database.get(username)[1]}\n') # on the returned list the 1 index value is balance
 			option_Selection = input('Choose an option above e.g 1 : ')
 		elif option_Selection == 2:
-			withdraw = input('Please enter a withdrawal amount: ')
-			print(f'Your remaining balance is : {database.get(username)[0] - withdraw}\n') # on the returned list the 0 index value is balance
+			withdraw = int(input('Please enter a withdrawal amount: '))
+			print(f'Your remaining balance is : {database.get(username)[1] - withdraw}\n') # on the returned list the 1 index value is balance
 			option_Selection = input('Choose an option above e.g 1 : ')
 		elif option_Selection == 3:
-			deposit = input('Enter deposit amount : ')
-			print(f'Your updated balance is : {database.get(username)[0] + deposit}\n')
+			deposit = int(input('Enter deposit amount : '))
+			print(f'Your updated balance is : {database.get(username)[1] + deposit}\n')
 		elif option_Selection == 4:
-			break
-dashboard()
-
-#user database
-users = {"lee":{"password":"1234", "balance":2000}}
-
-def register():
-    return
-
-def displayBalance():
-    return print("balance is...")
+			return print("logging out")
+            
 
 def login():
+    global username
     username = input("Enter your username ")
-    if username in users:
+    if username in database:
         password = input("Enter your password")
-        if(users[username]["password"] == password):
-            displayBalance()
+        if(database[username][0] == password):
+            dashboard(username)
         else:
             print("Error, incorrect password")
     else:
         print("THe user name does not exist, register for a new account")
-        
-
+        register()
+    return username
+ 
 def accessAccount():
     accessAcc = input("Would you like to 'login' or 'register'? ")
     if(accessAcc.lower() == "login"):
