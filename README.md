@@ -1,3 +1,1 @@
 # CodeBank
-
-WeThinkCode group project
